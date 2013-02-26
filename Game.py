@@ -32,16 +32,16 @@ def playAgain():
     return input().lower().startswith('y')
 def makeMove(board, letter, move):
     board[move] = letter
-def isWinner(bo, le):
-    # Using bo for board & le for letter.
-    return ((bo[1] == le and bo[2] == le and bo[3] == le) or # across the top
-            (bo[4] == le and bo[5] == le and bo[6] == le) or # across the middle
-            (bo[7] == le and bo[8] == le and bo[9] == le) or # across the bottom
-            (bo[7] == le and bo[4] == le and bo[1] == le) or # down the left side
-            (bo[8] == le and bo[5] == le and bo[2] == le) or # down the middle
-            (bo[9] == le and bo[6] == le and bo[3] == le) or # down the right side
-            (bo[7] == le and bo[5] == le and bo[3] == le) or # diagonal
-            (bo[9] == le and bo[5] == le and bo[1] == le)) # diagonal
+def isWinner(board, letter):
+
+    return ((board[1] == letter and board[2] == letter and board[3] == letter) or # across the top
+            (board[4] == letter and board[5] == letter and board[6] == letter) or # across the middle
+            (board[7] == letter and board[8] == letter and board[9] == letter) or # across the bottom
+            (board[7] == letter and board[4] == letter and board[1] == letter) or # down the left side
+            (board[8] == letter and board[5] == letter and board[2] == letter) or # down the middle
+            (board[9] == letter and board[6] == letter and board[3] == letter) or # down the right side
+            (board[7] == letter and board[5] == letter and board[3] == letter) or # diagonal
+            (board[9] == letter and board[5] == letter and board[1] == letter)) # diagonal
 def getBoardCopy(board):
     dupeBoard = []
     for i in board:
@@ -69,28 +69,28 @@ def getComputerMove(board, computerLetter):
         playerLetter = 'O'
     else:
         playerLetter = 'X'
-    # First, check if computer can win in next move.
+        # First, check if computer can win in next move.
     for i in range(1, 10):
         copy = getBoardCopy(board)
         if isSpaceFree(copy, i):
             makeMove(copy, computerLetter, i)
             if isWinner(copy, computerLetter):
                 return i
- # Second, check if computer can block a winning move.
+                # Second, check if computer can block a winning move.
     for i in range(1, 10):
         copy = getBoardCopy(board)
         if isSpaceFree(copy, i):
             makeMove(copy, playerLetter, i)
             if isWinner(copy, playerLetter):
                 return i
-     # Try to take the center, if it is free.
+                # Try to take the center, if it is free.
     if isSpaceFree(board, 5):
         return 5
-    # Try to take one of the corners, if they are free.
+        # Try to take one of the corners, if they are free.
     move = chooseRandomMoveFromList(board, [1, 3, 7, 9])
     if move != None:
         return move
-       # Move on one of the sides if nothing else
+        # Move on one of the sides if nothing else
     return chooseRandomMoveFromList(board, [2, 4, 6, 8])
 def isBoardFull(board):
     for i in range(1, 10):
