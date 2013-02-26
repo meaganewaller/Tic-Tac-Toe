@@ -76,7 +76,7 @@ def getComputerMove(board, computerLetter):
             makeMove(copy, computerLetter, i)
             if isWinner(copy, computerLetter):
                 return i
-        # Second, check if computer can block a winning move.
+ # Second, check if computer can block a winning move.
     for i in range(1, 10):
         copy = getBoardCopy(board)
         if isSpaceFree(copy, i):
@@ -86,7 +86,7 @@ def getComputerMove(board, computerLetter):
      # Try to take the center, if it is free.
     if isSpaceFree(board, 5):
         return 5
-        # Try to take one of the corners, if they are free.
+    # Try to take one of the corners, if they are free.
     move = chooseRandomMoveFromList(board, [1, 3, 7, 9])
     if move != None:
         return move
