@@ -99,7 +99,6 @@ def isBoardFull(board):
     return True
 print('Welcome to Meagan\'s Unbeatable Tic Tac Toe!')
 while True:
-    # Reset the board
     theBoard = [' '] * 10
     playerLetter, computerLetter = inputPlayerLetter()
     turn = whoGoesFirst()
@@ -107,7 +106,6 @@ while True:
     gameIsPlaying = True
     while gameIsPlaying:
         if turn == 'player':
-            # Player's turn.
             drawBoard(theBoard)
             move = getPlayerMove(theBoard)
             makeMove(theBoard, playerLetter, move)
@@ -123,7 +121,6 @@ while True:
                 else:
                     turn = 'computer'
         else:
-            # Computer's turn.
             move = getComputerMove(theBoard, computerLetter)
             makeMove(theBoard, computerLetter, move)
             if isWinner(theBoard, computerLetter):
