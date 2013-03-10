@@ -1,5 +1,20 @@
 # Tic Tac Toe
 import random
+def instructions():
+    print("""
+You will make your move by entering a number, 1 - 9.
+The number will correspond to the board position as shown below
+
+1 | 2 | 3
+---------
+4 | 5 | 6
+---------
+7 | 8 | 9
+
+Have fun, and good luck.
+
+"""
+    )
 def drawGameBoard(board):
     print('   |   |')
     print(' ' + board[1] + ' | ' + board[2] + ' | ' + board[3],)
@@ -23,9 +38,6 @@ def inputPlayerLetter():
     else:
         return ['O', 'X']
 def whoGoesFirst():
-    if random.randint(0, 1) == 0:
-        return 'computer'
-    else:
         return 'player'
 def playAgain():
     print('Do you want to play again? (yes or no)')
@@ -69,23 +81,185 @@ def getComputerMove(board, computerLetter):
         playerLetter = 'O'
     else:
         playerLetter = 'X'
-        # First, check if computer can win in next move.
-    for i in range(1, 10):
-        copy = getGameBoardCopy(board)
-        if isSpaceFree(copy, i):
-            makeMove(copy, computerLetter, i)
-            if isWinner(copy, computerLetter):
-                return i
-                # Second, check if computer can block a winning move.
-    for i in range(1, 10):
-        copy = getGameBoardCopy(board)
-        if isSpaceFree(copy, i):
-            makeMove(copy, playerLetter, i)
-            if isWinner(copy, playerLetter):
-                return i
-                # Try to take the center, if it is free.
+# All Moves
+            # Winning Top Row
+    if (board[1] == computerLetter and board[2] == computerLetter) and isSpaceFree(board,3):
+        return 3;
+    if (board[1] == computerLetter and board[3] == computerLetter) and isSpaceFree(board,2):
+        return 2;
+    if (board[2] == computerLetter and board[3] == computerLetter) and isSpaceFree(board,1):
+        return 1;
+
+            # Winning Second Row
+    if (board[4] == computerLetter and board[5] == computerLetter) and isSpaceFree(board,6):
+        return 6;
+    if (board[4] == computerLetter and board[6] == computerLetter) and isSpaceFree(board,5):
+        return 5;
+    if (board[5] == computerLetter and board[6] == computerLetter) and isSpaceFree(board,4):
+        return 4;
+
+        # Winning Third Row
+    if (board[7] == computerLetter and board[8] == computerLetter) and isSpaceFree(board,9):
+        return 9;
+    if (board[7] == computerLetter and board[9] == computerLetter) and isSpaceFree(board,8):
+        return 8;
+    if (board[8] == computerLetter and board[9] == computerLetter) and isSpaceFree(board,7):
+        return 7;
+
+        # Winning First Column
+
+    if (board[1] == computerLetter and board[4] == computerLetter) and isSpaceFree(board,7):
+        return 7;
+    if (board[1] == computerLetter and board[7] == computerLetter) and isSpaceFree(board,4):
+        return 4;
+    if (board[4] == computerLetter and board[7] == computerLetter) and isSpaceFree(board,1):
+        return 1;
+
+        # Winning Second Column
+    if (board[2] == computerLetter and board[5] == computerLetter) and isSpaceFree(board,8):
+        return 8;
+    if (board[2] == computerLetter and board[8] == computerLetter) and isSpaceFree(board,5):
+        return 5;
+    if (board[5] == computerLetter and board[8] == computerLetter) and isSpaceFree(board,2):
+        return 2;
+
+        # Winning Third Column
+    if (board[3] == computerLetter and board[6] == computerLetter) and isSpaceFree(board,9):
+        return 9;
+    if (board[3] == computerLetter and board[9] == computerLetter) and isSpaceFree(board,6):
+        return 6;
+    if (board[6] == computerLetter and board[9] == computerLetter) and isSpaceFree(board,3):
+        return 4;
+
+        # Winning Left to Right Diagonal
+    if (board[1] == computerLetter and board[5] == computerLetter) and isSpaceFree(board,9):
+        return 9;
+    if (board[1] == computerLetter and board[9] == computerLetter) and isSpaceFree(board,5):
+        return 5;
+    if (board[5] == computerLetter and board[9] == computerLetter) and isSpaceFree(board,1):
+        return 1;
+
+        # Winning Right to Left Diagonal
+    if (board[3] == computerLetter and board[5] == computerLetter) and isSpaceFree(board,7):
+        return 7;
+    if (board[3] == computerLetter and board[7] == computerLetter) and isSpaceFree(board,5):
+        return 5;
+    if (board[5] == computerLetter and board[7] == computerLetter) and isSpaceFree(board,3):
+        return 3;
+
+            # Top Row Horizontal Blocking
+    if (board[1] == playerLetter and board[2] == playerLetter) and isSpaceFree(board,3):
+        return 3;
+    if (board[2] == playerLetter and board[3] == playerLetter) and isSpaceFree(board,1):
+        return 1;
+    if (board[1] == playerLetter and board[3] == playerLetter) and isSpaceFree(board,2):
+        return 2;
+
+            # Second Row Horizontal Blocking
+    if (board[4] == playerLetter and board[5] == playerLetter) and isSpaceFree(board,6):
+        return 6;
+    if (board[5] == playerLetter and board[6] == playerLetter) and isSpaceFree(board,4):
+        return 4;
+    if (board[4] == playerLetter and board[6] == playerLetter) and isSpaceFree(board,5):
+        return 5;
+
+            # Third Row Horizontal Blocking
+    if (board[7] == playerLetter and board[8] == playerLetter) and isSpaceFree(board,9):
+        return 9;
+    if (board[8] == playerLetter and board[9] == playerLetter) and isSpaceFree(board,7):
+        return 7;
+    if (board[7] == playerLetter and board[9] == playerLetter) and isSpaceFree(board,8):
+        return 8;
+
+            # First Column Vertical Blocking
+    if (board[1] == playerLetter and board[4] == playerLetter) and isSpaceFree(board,7):
+        return 7;
+    if (board[4] == playerLetter and board[7] == playerLetter) and isSpaceFree(board,1):
+        return 1;
+    if (board[1] == playerLetter and board[7] == playerLetter) and isSpaceFree(board,4):
+        return 4;
+
+            # Second Column Vertical Blocking
+    if (board[2] == playerLetter and board[5] == playerLetter) and isSpaceFree(board,8):
+        return 8;
+    if (board[5] == playerLetter and board[8] == playerLetter) and isSpaceFree(board,2):
+        return 2;
+    if (board[2] == playerLetter and board[8] == playerLetter) and isSpaceFree(board,5):
+        return 5;
+
+            # Third Column Vertical Blocking
+    if (board[3] == playerLetter and board[6] == playerLetter) and isSpaceFree(board,9):
+        return 9;
+    if (board[3] == playerLetter and board[9] == playerLetter) and isSpaceFree(board,6):
+        return 6;
+    if (board[6] == playerLetter and board[9] == playerLetter) and isSpaceFree(board,3):
+        return 3;
+
+            # Left to Right Diagonal
+    if(board[1] == playerLetter and board[5] == playerLetter) and isSpaceFree(board,9):
+        return 9;
+    if(board[1] == playerLetter and board[9] == playerLetter) and isSpaceFree(board,5):
+        return 5;
+    if(board[5] == playerLetter and board[9] == playerLetter) and isSpaceFree(board,1):
+        return 1;
+
+            # Right to Left Diagonal
+    if (board[3] == playerLetter and board[5] == playerLetter) and isSpaceFree(board,7):
+        return 7;
+    if (board[3] == playerLetter and board[7] == playerLetter) and isSpaceFree(board,5):
+        return 5;
+    if (board[5] == playerLetter and board[7] == playerLetter) and isSpaceFree(board,3):
+        return 3;
+
+        # Take Center if it's Free
     if isSpaceFree(board, 5):
         return 5
+
+        # Counteract if they form a diagonal with PL in 5 and in 9
+    if (board[5] == playerLetter and board[1] == computerLetter and board[9] == playerLetter) and isSpaceFree(board,6):
+        return 6;
+    if (board[5] == playerLetter and board[1] == computerLetter and board[9] == playerLetter) and isSpaceFree(board,8):
+        return 8;
+    if (board[5] == playerLetter and board[1] == computerLetter and board[9] == playerLetter) and isSpaceFree(board,7):
+        return 7;
+    if (board[5] == playerLetter and board[1] == computerLetter and board[9] == playerLetter) and isSpaceFree(board,3):
+        return 3;
+
+        # Counteract if they form a diagonal with PL in 5 and in 1
+    if (board[5] == playerLetter and board[9] == computerLetter and board[1] == playerLetter) and isSpaceFree(board,2):
+        return 2;
+    if (board[5] == playerLetter and board[9] == computerLetter and board[1] == playerLetter) and isSpaceFree(board,4):
+        return 4;
+    if (board[5] == playerLetter and board[9] == computerLetter and board[1] == playerLetter) and isSpaceFree(board,7):
+        return 7;
+    if (board[5] == playerLetter and board[9] == computerLetter and board[1] == playerLetter) and isSpaceFree(board,3):
+        return 3;
+
+        # Counteract if they form a diagonal with PL in 5 and in 7
+    if (board[5] == playerLetter and board[3] == computerLetter and board[7] == playerLetter) and isSpaceFree(board,1):
+        return 1;
+    if (board[5] == playerLetter and board[3] == computerLetter and board[7] == playerLetter) and isSpaceFree(board,9):
+        return 9;
+    if (board[5] == playerLetter and board[3] == computerLetter and board[7] == playerLetter) and isSpaceFree(board,4):
+        return 4;
+    if (board[5] == playerLetter and board[3] == computerLetter and board[7] == playerLetter) and isSpaceFree(board,8):
+        return 8;
+
+        # Counteract if a diagonal with CL in 5 and PL in 1 & 9
+    if (board[1] == playerLetter and board[5] == computerLetter and board[9] == playerLetter) and isSpaceFree(board,2):
+        return 2;
+    if (board[1] == playerLetter and board[5] == computerLetter and board[9] == playerLetter) and isSpaceFree(board,8):
+        return 8;
+
+
+        # Counteract if diagonal with CL in 5 and PL in 3 & 7
+    if (board[3] == playerLetter and board[5] == computerLetter and board[7] == playerLetter) and isSpaceFree(board,2):
+        return 2;
+    if (board[3] == playerLetter and board[5] == computerLetter and board[7] == playerLetter) and isSpaceFree(board,8):
+        return 8;
+
+
+
         # Try to take one of the corners, if they are free.
     move = chooseRandomMoveFromList(board, [1, 3, 7, 9])
     if move != None:
@@ -98,6 +272,7 @@ def isGameBoardFull(board):
             return False
     return True
 print('Welcome to Meagan\'s Unbeatable Tic Tac Toe!')
+instructions()
 while True:
     theGameBoard = [' '] * 10
     playerLetter, computerLetter = inputPlayerLetter()
