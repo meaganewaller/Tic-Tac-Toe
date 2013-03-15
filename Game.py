@@ -259,7 +259,30 @@ def getComputerMove(board, computerLetter):
         return 8;
 
 
-
+    if (board[2] == playerLetter and board[9] == playerLetter) and isSpaceFree(board,3):
+        return 3;
+    if (board[2] == playerLetter and board[7] == playerLetter) and isSpaceFree(board,1):
+        return 1;
+    if (board[6] == playerLetter and board[1] == playerLetter) and isSpaceFree(board,3):
+        return 3;
+    if (board[6] == playerLetter and board[7] == playerLetter) and isSpaceFree(board,9):
+        return 9;
+    if (board[4] == playerLetter and board[3] == playerLetter) and isSpaceFree(board,1):
+        return 1;
+    if (board[4] == playerLetter and board[9] == playerLetter) and isSpaceFree(board,7):
+        return 7;
+    if (board[8] == playerLetter and board[3] == playerLetter) and isSpaceFree(board,9):
+        return 9;
+    if (board[8] == playerLetter and board[1] == playerLetter) and isSpaceFree(board,7):
+        return 7;
+    if (board[2] == playerLetter and board[6] == playerLetter) and isSpaceFree(board,3):
+        return 3;
+    if (board[6] == playerLetter and board[8] == playerLetter) and isSpaceFree(board,9):
+        return 9;
+    if (board[4] == playerLetter and board[8] == playerLetter) and isSpaceFree(board,7):
+        return 7;
+    if(board[2] == playerLetter and board[4] == playerLetter) and isSpaceFree(board,1):
+        return 1;
         # Try to take one of the corners, if they are free.
     move = chooseRandomMoveFromList(board, [1, 3, 7, 9])
     if move != None:
