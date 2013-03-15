@@ -17,7 +17,7 @@ Have fun, and good luck.
     )
 def drawGameBoard(board):
     print('   |   |')
-    print(' ' + board[1] + ' | ' + board[2] + ' | ' + board[3],)
+    print(' ' + board[1] + ' | ' + board[2] + ' | ' + board[3])
     print('   |   |')
     print('-----------')
     print('   |   |')
@@ -31,7 +31,7 @@ def inputPlayerLetter():
     letter = ''
     while not (letter == 'X' or letter == 'O'):
         print('Do you want to be X or O?')
-        letter = input().upper()
+        letter = raw_input().upper()
 
     if letter == 'X':
         return ['X', 'O']
@@ -41,7 +41,7 @@ def whoGoesFirst():
         return 'player'
 def playAgain():
     print('Do you want to play again? (yes or no)')
-    return input().lower().startswith('y')
+    return raw_input().lower().startswith('y')
 def makeMove(board, letter, move):
     board[move] = letter
 def isWinner(board, letter):
@@ -65,7 +65,7 @@ def getPlayerMove(board):
     move = ' '
     while move not in '1 2 3 4 5 6 7 8 9'.split() or not isSpaceFree(board, int(move)):
         print('What is your next move? (1-9)')
-        move = input()
+        move = raw_input()
     return int(move)
 def chooseRandomMoveFromList(board, movesList):
     possibleMoves = []
