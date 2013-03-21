@@ -13,17 +13,4 @@ Board is numbered as shown below:
                                                ---------
                                                7 | 8 | 9
 
-** WARNING ** 
-
-Use Python 3 or higher to run this program to avoid crashing.
-
-
-If you need to run in an earlier version you will need to wrap your responses in quotes like so:
-                                             
-                                             'X' or 'O' or '1', '2', etc.
-                                             
-
-Also, your game board will appear a bit messed up in the terminal.
-
-
 
